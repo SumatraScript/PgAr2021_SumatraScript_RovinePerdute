@@ -1,19 +1,27 @@
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 public class Reader {
-    public static ArrayList<Persona> readerPersona(){
-        File input = new File("src//xml//inputPersone.xml");
+
+    public static ArrayList<Citta> readerPersona(){
+        File input = new File("src//xml//PgAr_Map_5.xml");
+        ArrayList<Citta> citta=new ArrayList<>();
         String nome = new String();
-        String cognome = new String();
-        String sesso = new String();
-        String comune_di_nascita = new String();
-        String data_di_nascita = new String();
-        ArrayList<Persona> persone = new ArrayList<Persona>();
+
+        ArrayList<String> nomi=new ArrayList<>();
+        ArrayList<Integer> id=new ArrayList<>();
+        ArrayList<Integer> x=new ArrayList<>();
+        ArrayList<Integer> y=new ArrayList<>();
+        ArrayList<Integer> h=new ArrayList<>();
+
         XMLInputFactory xmlif = XMLInputFactory.newFactory();
         XMLStreamReader xmlr = null;
-        ArrayList<String> nomi = new ArrayList<String>();
-        ArrayList<String> cognomi = new ArrayList<String>();
-        ArrayList<String> sessi = new ArrayList<String>();
-        ArrayList<String> comuni_di_nascita = new ArrayList<String>();
-        ArrayList<String> date_di_nascita = new ArrayList<String>();
 
         try {
             xmlr = xmlif.createXMLStreamReader(new FileInputStream(input));
@@ -27,36 +35,36 @@ public class Reader {
         try {
             while (xmlr.hasNext()) {
                 if (xmlr.getEventType() == XMLStreamConstants.START_ELEMENT) {
-                    // lettura nome e inizializzazione in un array di string
-                    if (xmlr.getLocalName().equals("nome")) {
+                    // lettura id
+                    if (xmlr.getLocalName().equals("id")) {
                         xmlr.next();
                         if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            nome = xmlr.getText();
-                            nomi.add(nome);
+                            String letto = xmlr.getText();
+                            id.add(Integer.parseInt(letto));
                         }
                     }
-                    // lettura cognome e inizializzazione in  un array di string
+                    // lettura cordinata x
                     else if (xmlr.getLocalName().equals("cognome")) {
                         xmlr.next();
                         if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            cognome = xmlr.getText();
-                            cognomi.add(cognome);
+                            String letto = xmlr.getText();
+                            x.add(Integer.parseInt(letto));
                         }
                     }
                     // lettura sesso e inizializzazione in  un array di string
                     else if (xmlr.getLocalName().equals("sesso")) {
                         xmlr.next();
                         if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            sesso = xmlr.getText();
-                            sessi.add(sesso);
+                            String letto = xmlr.getText();
+                            y.add(Integer.parseInt(letto));
                         }
                     }
                     // lettura comune di nascita e inizializzazione in  un array di string
                     else if (xmlr.getLocalName().equals("comune_nascita")) {
                         xmlr.next();
                         if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            comune_di_nascita = xmlr.getText();
-                            comuni_di_nascita.add(comune_di_nascita);
+                            String letto = xmlr.getText();
+                            h.add(Integer.parseInt(letto));
                         }
                     }
                     // lettura date di nascita e inizializzazione in  un array di string
