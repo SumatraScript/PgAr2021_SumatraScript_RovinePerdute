@@ -2,15 +2,11 @@ public class Citta {
 
     private int id;
     private String nome;
-    private int x;
-    private int y;
-    private int h;
+    Coordinate coord;
 
-    public Citta(int id, String nome, int x, int y, int h) {
+    public Citta(int id, String nome, Coordinate coord) {
         this.id = id;
         this.nome = nome;
-        this.x = x;
-        this.y = y;
-        this.h = h;
+        this.coord = coord;
     }
 }
