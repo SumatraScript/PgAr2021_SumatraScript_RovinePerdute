@@ -1,12 +1,12 @@
 public class Coordinate {
     int x;
     int y;
-    int z;
+    int h;
 
-    public Coordinate(int x, int y, int z) {
+    public Coordinate(int x, int y, int h) {
         this.x = x;
         this.y = y;
-        this.z = z;
+        this.h = h;
     }
 
     public int getX() {
@@ -25,11 +25,16 @@ public class Coordinate {
         this.y = y;
     }
 
-    public int getZ() {
-        return z;
+    public int getH() {
+        return h;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public void setH(int h) {
+        this.h= h;
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinate{" + "x=" + x + ", y=" + y + ", h=" + h + '}';
     }
 }

@@ -9,16 +9,17 @@ import java.util.ArrayList;
 
 public class Reader {
 
-    public static ArrayList<Citta> readerPersona(){
-        File input = new File("src//xml//PgAr_Map_5.xml");
-        ArrayList<Citta> citta=new ArrayList<>();
-        String nome = new String();
+    public static ArrayList<Citta> readerCitta() {
 
-        ArrayList<String> nomi=new ArrayList<>();
-        ArrayList<Integer> id=new ArrayList<>();
-        ArrayList<Integer> x=new ArrayList<>();
-        ArrayList<Integer> y=new ArrayList<>();
-        ArrayList<Integer> h=new ArrayList<>();
+        File input = new File("src//xml//PgAr_Map_10000.xml");
+
+        ArrayList<Citta> cittadine = new ArrayList<>();
+        ArrayList<String> nomi = new ArrayList<>();
+        ArrayList<Coordinate> coordinate = new ArrayList<>();
+        ArrayList<Integer> id = new ArrayList<>();
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        ArrayList<Integer> h = new ArrayList<>();
 
         XMLInputFactory xmlif = XMLInputFactory.newFactory();
         XMLStreamReader xmlr = null;
@@ -36,57 +37,62 @@ public class Reader {
             while (xmlr.hasNext()) {
                 if (xmlr.getEventType() == XMLStreamConstants.START_ELEMENT) {
                     // lettura id
-                    if (xmlr.getLocalName().equals("id")) {
-                        xmlr.next();
-                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            String letto = xmlr.getText();
-                            id.add(Integer.parseInt(letto));
+                    if (xmlr.getLocalName().equals("city")) {
+                        String letto;
+                        for (int i = 0; i < xmlr.getAttributeCount(); i++) {
+                            switch (xmlr.getAttributeLocalName(i)) {
+                                //lettura id
+                                case "id":
+                                    letto = xmlr.getAttributeValue(i);
+                                    id.add(Integer.parseInt(letto));
+                                    break;
+                                //lettura nome
+                                case "name":
+                                    nomi.add(xmlr.getAttributeValue(i));
+                                    break;
+                                //lettura x
+                                case "x":
+                                    letto = xmlr.getAttributeValue(i);
+                                    x.add(Integer.parseInt(letto));
+                                    break;
+                                //lettura y
+                                case "y":
+                                    letto = xmlr.getAttributeValue(i);
+                                    y.add(Integer.parseInt(letto));
+                                    break;
+                                //lettura h
+                                case "h":
+                                    letto = xmlr.getAttributeValue(i);
+                                    h.add(Integer.parseInt(letto));
+                                    break;
+                            }
                         }
                     }
-                    // lettura cordinata x
-                    else if (xmlr.getLocalName().equals("cognome")) {
-                        xmlr.next();
-                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            String letto = xmlr.getText();
-                            x.add(Integer.parseInt(letto));
-                        }
-                    }
-                    // lettura sesso e inizializzazione in  un array di string
-                    else if (xmlr.getLocalName().equals("sesso")) {
-                        xmlr.next();
-                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            String letto = xmlr.getText();
-                            y.add(Integer.parseInt(letto));
-                        }
-                    }
-                    // lettura comune di nascita e inizializzazione in  un array di string
-                    else if (xmlr.getLocalName().equals("comune_nascita")) {
-                        xmlr.next();
-                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            String letto = xmlr.getText();
-                            h.add(Integer.parseInt(letto));
-                        }
-                    }
-                    // lettura date di nascita e inizializzazione in  un array di string
-                    else if (xmlr.getLocalName().equals("data_nascita")) {
-                        xmlr.next();
-                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
-                            data_di_nascita = xmlr.getText();
-                            date_di_nascita.add(data_di_nascita);
-                        }
-                    }
+                    // lettura link
+                    //da aggiungere
+//                    else if (xmlr.getLocalName().equals("link")) {
+//                        xmlr.next();
+//                        if (xmlr.getEventType() == XMLStreamConstants.CHARACTERS) {
+//                            String nome = xmlr.getText();
+//                            x.add(nome);
+//                        }
+//                    }
                 }
                 xmlr.next();
             }
-        }
-        catch (XMLStreamException e) {
+        } catch (XMLStreamException e) {
             e.printStackTrace();
         }
-        //iserimento dei dati in persona
-        for(int i=0;i<nomi.size();i++) {
-            Persona persona = new Persona(nomi.get(i), cognomi.get(i), sessi.get(i), comuni_di_nascita.get(i), date_di_nascita.get(i));
-            persone.add(persona);
+        //iserimento dei dati in cordinate
+        for (int i = 0; i < x.size(); i++) {
+            Coordinate coordinata = new Coordinate(x.get(i), y.get(i), h.get(i));
+            coordinate.add(coordinata);
         }
-        return persone;
+        //inserimento dei dati in Città
+        for (int i = 0; i < id.size(); i++) {
+            Citta citta = new Citta(id.get(i), nomi.get(i), coordinate.get(i));
+            cittadine.add(citta);
+        }
+        return cittadine;
     }
 }
