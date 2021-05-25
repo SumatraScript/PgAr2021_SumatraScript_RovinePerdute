@@ -5,7 +5,7 @@ public class Metztli implements Veicolo{
     @Override
     public int calcoloCarburante(ArrayList<Citta> percorso){
         int carburante=0;
-        for(int i=0;i<percorso.size()/2;i++){
+        for(int i=0;i<percorso.size()-1;i++){
             carburante+=percorso.get(i).calcolaDist(percorso.get(i++));
         }
         return carburante;
