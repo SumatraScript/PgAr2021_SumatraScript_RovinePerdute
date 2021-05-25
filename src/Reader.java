@@ -64,7 +64,7 @@ public class Reader {
                         cittadine.add(citta);
                     }
                     // lettura link
-                    else if (xmlr.getLocalName().equals("link to")) {
+                    else if (xmlr.getLocalName().equals("link")) {
                         cittadine.get(j).setArr(Integer.parseInt(xmlr.getAttributeValue(0)));
                     }
                 }
@@ -77,7 +77,15 @@ public class Reader {
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }
-
+        collegaCitta(cittadine);
         return cittadine;
+    }
+
+    private static void collegaCitta(ArrayList<Citta> cittadine) {
+        for (Citta citta: cittadine) {
+            for (int x: citta.getArr()) {
+            citta.setLinked_to(cittadine.get(x));
+            }
+        }
     }
 }

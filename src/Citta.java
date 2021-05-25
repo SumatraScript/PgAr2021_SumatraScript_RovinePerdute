@@ -1,34 +1,221 @@
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Citta {
 
     private int id;
     private String nome;
     private Coordinate coord;
-    private ArrayList<Integer> Arr = new ArrayList<>();
+    private ArrayList<Integer> Arr;
     private Map<Citta, Integer> linked_to;
 
     public Citta(Coordinate coord){
         this.coord = coord;
+        this.Arr = new ArrayList<>();
+        this.linked_to = new Map<Citta, Integer>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean containsKey(Object key) {
+                return false;
+            }
+
+            @Override
+            public boolean containsValue(Object value) {
+                return false;
+            }
+
+            @Override
+            public Integer get(Object key) {
+                return null;
+            }
+
+            @Override
+            public Integer put(Citta key, Integer value) {
+                return null;
+            }
+
+            @Override
+            public Integer remove(Object key) {
+                return null;
+            }
+
+            @Override
+            public void putAll(Map<? extends Citta, ? extends Integer> m) {
+
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Set<Citta> keySet() {
+                return null;
+            }
+
+            @Override
+            public Collection<Integer> values() {
+                return null;
+            }
+
+            @Override
+            public Set<Entry<Citta, Integer>> entrySet() {
+                return null;
+            }
+        };
     }
 
     public Citta(int id, String nome, Coordinate coord, Map<Citta, Integer> linked_to) {
         this.id = id;
         this.nome = nome;
         this.coord = coord;
-        this.linked_to = linked_to;
+        this.Arr = new ArrayList<>();
+        this.linked_to = new Map<Citta, Integer>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean containsKey(Object key) {
+                return false;
+            }
+
+            @Override
+            public boolean containsValue(Object value) {
+                return false;
+            }
+
+            @Override
+            public Integer get(Object key) {
+                return null;
+            }
+
+            @Override
+            public Integer put(Citta key, Integer value) {
+                return null;
+            }
+
+            @Override
+            public Integer remove(Object key) {
+                return null;
+            }
+
+            @Override
+            public void putAll(Map<? extends Citta, ? extends Integer> m) {
+
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Set<Citta> keySet() {
+                return null;
+            }
+
+            @Override
+            public Collection<Integer> values() {
+                return null;
+            }
+
+            @Override
+            public Set<Entry<Citta, Integer>> entrySet() {
+                return null;
+            }
+        };
     }
 
     public Citta(int id, String nome, Coordinate coord) {
         this.id = id;
         this.nome = nome;
         this.coord = coord;
+        this.Arr = new ArrayList<>();
+        this.linked_to = new Map<Citta, Integer>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean containsKey(Object key) {
+                return false;
+            }
+
+            @Override
+            public boolean containsValue(Object value) {
+                return false;
+            }
+
+            @Override
+            public Integer get(Object key) {
+                return null;
+            }
+
+            @Override
+            public Integer put(Citta key, Integer value) {
+                return null;
+            }
+
+            @Override
+            public Integer remove(Object key) {
+                return null;
+            }
+
+            @Override
+            public void putAll(Map<? extends Citta, ? extends Integer> m) {
+
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Set<Citta> keySet() {
+                return null;
+            }
+
+            @Override
+            public Collection<Integer> values() {
+                return null;
+            }
+
+            @Override
+            public Set<Entry<Citta, Integer>> entrySet() {
+                return null;
+            }
+        };
     }
 
     public void setArr(int x){
         Arr.add(x);
+    }
+
+    public  ArrayList<Integer> getArr(){
+        return Arr;
     }
 
     public int getId() {
@@ -88,6 +275,8 @@ public class Citta {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", coord=" + coord +
-                '}';
+                '}'+
+                "linked to{" + getArr() +
+                "}";
     }
 }
