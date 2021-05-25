@@ -7,7 +7,7 @@ public class Tonatiuh implements Veicolo{
     public int calcoloCarburante(ArrayList<Citta> percorso) {
         int carburante=0;
         for(int i=0;i<percorso.size()-1;i++){
-            carburante+=percorso.get(i).calcolaDist(percorso.get(i++));
+            carburante+=calcolaDistanza(percorso.get(i), percorso.get(i++));
         }
         return carburante;
     }
