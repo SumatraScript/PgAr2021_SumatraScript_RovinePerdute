@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Tonatiuh implements Veicolo{
-    private int carburante;
 
     @Override
     public int calcoloCarburante(ArrayList<Citta> percorso) {
