@@ -252,8 +252,8 @@ public class Citta {
     }
 
     public boolean equals(Citta o) {
-        if (this.nome == o.nome)
-            if (this.coord == o.getCoord())
+        if (this.nome.equals(o.nome))
+            if (this.coord.equals(o.getCoord()))
                 return true;
                 return false;
     }
