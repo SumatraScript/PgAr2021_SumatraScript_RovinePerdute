@@ -9,6 +9,14 @@ public class Citta {
     private Map<Citta, Integer> mappaTonatiuh;
     private Map<Citta, Integer> mappaMetztli;
 
+    public Map<Citta, Integer> getMappaTonatiuh() {
+        return mappaTonatiuh;
+    }
+
+    public Map<Citta, Integer> getMappaMetztli() {
+        return mappaMetztli;
+    }
+
     public void setCollegamentiCitta(ArrayList<Integer> collegamentiCitta) {
         this.collegamentiCitta = collegamentiCitta;
     }
@@ -73,9 +81,9 @@ public class Citta {
     /**
      * Creazione delle due mappe a seconda del veicolo
      * */
-    public void setLinked_to(Citta collegataA) {
-        this.mappaTonatiuh.put(collegataA, Tonatiuh.calcolaDistanza(this.coord, collegataA));
-        this.mappaMetztli.put(collegataA, Metztli.calcolaDistanza(this.coord, collegataA));
+    public void setLinked_to(Citta collegata_a) {
+        this.mappaTonatiuh.put(collegata_a, Tonatiuh.calcolaDistanza(this.coord, collegata_a));
+        this.mappaMetztli.put(collegata_a, Metztli.calcolaDistanza(this.coord, collegata_a));
     }
 
     public boolean equals(String o) {
