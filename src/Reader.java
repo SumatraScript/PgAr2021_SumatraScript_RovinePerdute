@@ -83,8 +83,9 @@ public class Reader {
 
     private static void collegaCitta(ArrayList<Citta> cittadine) {
         for (Citta citta: cittadine) {
-            for (int x: citta.getArr()) {
+            for (int x: citta.getCollegamentiCitta()) {
             citta.setLinked_to(cittadine.get(x));
+
             }
         }
     }
