@@ -11,15 +11,10 @@ public class Dijkstra {
 
         Citta cittaAttuale= cercaCittaAttuale(grafo);
         ArrayList<Citta> percorso=new ArrayList<>();
-        ArrayList<Citta> blackList=new ArrayList<>();
 
         percorso.add(origine);
         while(!cittaAttuale.getNome().equals("Rovine Perdute")) {
             cittaAttuale = distanzaMinoreCittaAuttuale(cittaAttuale, grafo);
-            if(percorso.contains(cittaAttuale)){
-                blackList.add(cittaAttuale);
-                cittaAttuale=
-            }
             percorso.add(cittaAttuale);
         }
         System.out.println("Inutike");
@@ -45,10 +40,10 @@ public class Dijkstra {
         double min=Double.MAX_VALUE;
         Citta cittaAttuale=null;
         for(Map.Entry<Citta, Double> citta: grafo.getMappa().entrySet()){
-           if(citta.getValue()<min){
-               min = citta.getValue();
-               cittaAttuale=citta.getKey();
-           }
+            if(citta.getValue()<min){
+                min = citta.getValue();
+                cittaAttuale=citta.getKey();
+            }
         }
         return cittaAttuale;
     }
