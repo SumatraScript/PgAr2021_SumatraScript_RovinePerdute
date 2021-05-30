@@ -1,19 +1,23 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Grafo {
-    private Set<Citta> nodi = new HashSet<>();
+    private Map<Citta,Double> mappa;
 
-    public void addNode(Citta CittaAgiunta) {
-        nodi.add(CittaAgiunta);
+    public Map<Citta, Double> getMappa() {
+        return mappa;
     }
 
-    public Set<Citta> getNodi() {
-        return nodi;
+    public void setPut(Citta citta, double valore) {
+        this.mappa.put(citta,valore);
     }
 
-    public void setNodi(Set<Citta> nodi) {
-        this.nodi = nodi;
+    public Grafo(ArrayList<Citta> cittadine) {
+        this.mappa=new HashMap<>();
+        mappa.put(cittadine.get(0),0.0);
+        for(int i=1;i<cittadine.size();i++){
+            mappa.put(cittadine.get(i),Double.MAX_VALUE);
+        }
     }
-
 }

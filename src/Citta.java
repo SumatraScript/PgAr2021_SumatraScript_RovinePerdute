@@ -6,14 +6,14 @@ public class Citta {
     private String nome;
     private Coordinate coord;
     private ArrayList<Integer> collegamentiCitta;
-    private Map<Citta, Integer> mappaTonatiuh;
-    private Map<Citta, Integer> mappaMetztli;
+    private Map<Citta, Double> mappaTonatiuh;
+    private Map<Citta, Double> mappaMetztli;
 
-    public Map<Citta, Integer> getMappaTonatiuh() {
+    public Map<Citta, Double> getMappaTonatiuh() {
         return mappaTonatiuh;
     }
 
-    public Map<Citta, Integer> getMappaMetztli() {
+    public Map<Citta, Double> getMappaMetztli() {
         return mappaMetztli;
     }
 
@@ -28,7 +28,7 @@ public class Citta {
         this.mappaMetztli = new HashMap<>();
     }
 
-    public Citta(int id, String nome, Coordinate coord, Map<Citta, Integer> linked_to) {
+    public Citta(int id, String nome, Coordinate coord, Map<Citta, Double> linked_to) {
         this.id = id;
         this.nome = nome;
         this.coord = coord;
