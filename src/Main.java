@@ -7,7 +7,7 @@ public class Main {
         ArrayList<Citta> cittadine = Reader.readerCitta();
         Grafo grafo= new Grafo(cittadine);
 
-        ArrayList<Citta> percorso=Dijkstra.cercaPercorsoMigliore(grafo,cittadine.get(0));
+        ArrayList<Citta> percorso=Dijkstra.cercaPercorsoMiglioreMetztli(grafo,cittadine.get(0));
         Printer.write(percorso);
 
         for(int i=0;i< cittadine.size();i++){

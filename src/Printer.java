@@ -32,9 +32,13 @@ public class Printer {
                 xmlw.writeStartElement("city");
                 xmlw.writeAttribute("id", String.valueOf(percorso.get(i).getId()));
                 xmlw.writeAttribute("name", percorso.get(i).getNome());
+                xmlw.writeEndElement();
             }
-            xmlw.writeEndElement();
             xmlw.writeCharacters("\n\t");
+            xmlw.writeEndElement();
+
+            xmlw.writeCharacters("\n");
+            xmlw.writeEndDocument();
             xmlw.flush(); // svuota il buffer e procede alla scrittura
             xmlw.close(); // chiusura del documento e delle risorse impiegate
         } catch (Exception e) { // se c’è un errore viene eseguita questa parte
