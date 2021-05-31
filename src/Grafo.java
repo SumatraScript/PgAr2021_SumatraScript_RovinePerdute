@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Grafo {
     private Map<Citta,Double> mappa;
@@ -11,6 +12,19 @@ public class Grafo {
 
     public void setPut(Citta citta, double valore) {
         this.mappa.put(citta,valore);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Grafo grafo = (Grafo) o;
+        return Objects.equals(mappa, grafo.mappa);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mappa);
     }
 
     public Grafo(ArrayList<Citta> cittadine) {

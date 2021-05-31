@@ -1,55 +1,56 @@
 import java.util.*;
 
 public class Dijkstra {
-    public static double getDistanzaTotalePercorsaMetztli() {
-        return distanzaTotalePercorsaMetztli;
-    }
+    public static void cercaPercorsiPossibili(Grafo grafo) {
+        ArrayList<Citta> cittaNonVisitate=new ArrayList<>();
+        Map<Citta, String> tracciaPercorso= new HashMap<>();
 
-    private static double distanzaTotalePercorsaMetztli =0;
-
-    public static ArrayList<Citta> cercaPercorsoMiglioreMetztli(Grafo grafo, Citta origine){
-
-
-        ArrayList<Citta> percorso=new ArrayList<>();
-        ArrayList<Citta> visitate=new ArrayList<>();
-        ArrayList<Citta> nonVisistate=new ArrayList<>();
-
-        percorso.add(origine);
-        Citta cittaAttuale= cercaCittaAttuale(grafo,visitate,percorso);
-
-
-        while(!cittaAttuale.getNome().equals("Rovine Perdute")) {
-            cittaAttuale = cercaCittaAttuale(grafo,visitate,percorso);
+        //Inizializzazione citta non visitate
+        for(Map.Entry<Citta,Double> citta: grafo.getMappa().entrySet()){
+            cittaNonVisitate.add(citta.getKey());
+            tracciaPercorso.put(citta.getKey(), "v");
         }
-        System.out.println("Inutike");
-        return percorso;
+
+        ArrayList<Citta> cittaVisitate=new ArrayList<>();
+        ArrayList<Nodo> nodini=new ArrayList<>();
+
+
+        Citta cittaAttuale = null;
+        while(cittaNonVisitate.size()!=0) {
+            cittaAttuale=cercaCittaAttuale(grafo,cittaVisitate);
+            cittaVisitate.add(cittaAttuale);
+            dijkstra(grafo,cittaAttuale,cittaVisitate);
+            cittaNonVisitate.remove(cittaAttuale);
+
+        }
+        System.out.println("vitelle");
+    }
+    public static void dijkstra(Grafo grafo,Citta citta,ArrayList<Citta> cittaVisitate){
+        for(Map.Entry<Citta,Double> nodi: citta.getMappaMetztli().entrySet()){
+            for(Map.Entry<Citta,Double> nodoGrafo: grafo.getMappa().entrySet()){
+                if(nodoGrafo.getKey().equals(nodi.getKey()) && !cittaVisitate.contains(nodoGrafo.getKey())){
+                    double inserimento=0;
+                    if(grafo.getMappa().get(cittaVisitate.get(cittaVisitate.size()-1))==Double.MAX_VALUE) {
+                        inserimento = nodi.getValue();
+                    }
+                    else {
+                        inserimento = nodi.getValue() + grafo.getMappa().get(cittaVisitate.get(cittaVisitate.size() - 1));
+                    }
+                    grafo.setPut(nodoGrafo.getKey(),inserimento);
+                }
+            }
+        }
     }
 
-    public static Citta cercaCittaAttuale(Grafo grafo,ArrayList<Citta> visitate,ArrayList<Citta> percorso){
-        double min=Double.MAX_VALUE;
-        Citta cittaAttuale=null;
-        for(Map.Entry<Citta, Double> citta: grafo.getMappa().entrySet()){
-            if(citta.getValue()<min && !visitate.contains(citta.getKey())){
+    public static Citta cercaCittaAttuale(Grafo grafo, ArrayList<Citta> cittaVisitate) {
+        double min = Double.MAX_VALUE;
+        Citta cittaAttuale = null;
+        for (Map.Entry<Citta, Double> citta : grafo.getMappa().entrySet()) {
+            if (citta.getValue() < min && !cittaVisitate.contains(citta.getKey())) {
                 min = citta.getValue();
-                cittaAttuale=citta.getKey();
+                cittaAttuale = citta.getKey();
             }
         }
-        visitate.add(cittaAttuale);
-        double peso=Double.MAX_VALUE;
-        Citta cittaAdiacente=null;
-        for(Map.Entry<Citta, Double> cittaCandidata: cittaAttuale.getMappaTonatiuh().entrySet()){
-            if(cittaCandidata.getValue()<peso && !visitate.contains(cittaCandidata.getKey())){
-                peso = cittaCandidata.getValue();
-                cittaAdiacente= cittaCandidata.getKey();
-            }
-        }
-        distanzaTotalePercorsaMetztli +=peso;
-        if(distanzaTotalePercorsaMetztli < grafo.getMappa().get(cittaAdiacente))
-            grafo.setPut(cittaAdiacente, distanzaTotalePercorsaMetztli);
-        percorso.add(cittaAdiacente);
-        return cittaAdiacente;
+        return cittaAttuale;
     }
 }
-
-
-//calc_dist= distanza(origine, cittaAttuale) + peso(cittaAttuale, cittaAdiacente);

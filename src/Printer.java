@@ -7,6 +7,7 @@ public class Printer {
     private static final String ASSENTE = "ASSENTE";
 
     public static void write(ArrayList<Citta> percorso) {
+
         XMLOutputFactory xmlof = null;
         XMLStreamWriter xmlw = null;
         try {
@@ -25,7 +26,8 @@ public class Printer {
             xmlw.writeCharacters("\n\t");
             xmlw.writeStartElement("route");
             xmlw.writeAttribute("team", "Tonathiu");
-            xmlw.writeAttribute("cost",  String.valueOf(Dijkstra.getDistanzaTotalePercorsaMetztli()));
+            //xmlw.writeAttribute("cost",  String.valueOf(Dijkstra.getDistanzaTotalePercorsaMetztli()));
+            xmlw.writeAttribute("cities", String.valueOf(percorso.size()));
 
             for (int i = 0; i < percorso.size(); i++) {
                 xmlw.writeCharacters("\n\t\t");
